@@ -40,7 +40,7 @@ public class PreProcess {
 
     public boolean isDigit(String word) {
         try {
-            Integer.parseInt(word);
+            Long.parseLong(word);
             return true;
         } catch (Exception e) {
             return false;
@@ -59,9 +59,11 @@ public class PreProcess {
             while (lea.hasNext() == true) {
                 String line = lea.nextLine();
 
-                line = line.replaceAll("[#$+_╠►=,♥❤^💗░██▓:/(.'\\!“”;)*?\"-]", " ");
-                line = line.toLowerCase().replaceAll("co op", "co-op");
-                line = line.replaceAll("  ", " ").replaceAll("   ", " ");
+                // line = line.replaceAll("[#$+\\[\\]@%╠►=♥❤^💗░██▓:/(.\\!“”;)€°~;*?\"]", "");
+                line = line.replaceAll("[,'\\-_]", " ");
+                line = line.replaceAll("[^A-Za-z ]", "");
+                line = line.toLowerCase().replaceAll("co op", /"co-op");
+                // line = line.replaceAll(" ", " ").replaceAll(" ", " ");
                 String lineFiltered = "";
                 String[] array = line.split(" ");
                 for (int i = 0; i < array.length; i++) {

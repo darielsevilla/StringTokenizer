@@ -1,3 +1,5 @@
 /dataFiles/dataset.csv
 /dataFiles/processedDS.csv
 .vscode/
+/dataFiles/results/
+/dataFiles/resultsdouble/

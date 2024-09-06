@@ -11,7 +11,7 @@ import org.apache.hadoop.io.*;
 import org.apache.hadoop.mapred.*;
 import org.apache.hadoop.util.*;
 
-public class WordCount {
+public class WordCount2 {
     public static class SingleMapper extends MapReduceBase implements Mapper<LongWritable, Text, Text, IntWritable> {
         private final IntWritable num = new IntWritable(1);
         private Text texto = new Text();
@@ -20,8 +20,9 @@ public class WordCount {
                 throws IOException {
 
             String[] array = txt.toString().split(" ");
-            for (int i = 0; i < array.length; i++) {
-                texto.set(array[i]);
+            for (int i = 0; i < array.length - 1; i++) {
+                String word = array[i] + " " + array[i + 1];
+                texto.set(word);
                 out.collect(texto, num);
             }
 
@@ -43,7 +44,7 @@ public class WordCount {
     }
 
     public static void main(String[] argv) {
-        JobConf job = new JobConf(WordCount.class);
+        JobConf job = new JobConf(WordCount2.class);
         job.setJobName("procesamiento");
         job.setOutputKeyClass(Text.class);
         job.setOutputValueClass(IntWritable.class);
@@ -56,7 +57,7 @@ public class WordCount {
         FileInputFormat.setInputPaths(job, new Path(argv[0]));
         FileOutputFormat.setOutputPath(job, new Path(argv[1]));
 
-        JobConf conf = new JobConf(WordCount.class);
+        JobConf conf = new JobConf(WordCount2.class);
 
         try {
             JobClient.runJob(job);

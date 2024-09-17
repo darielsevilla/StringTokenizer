@@ -62,7 +62,7 @@ public class PreProcess {
                 // line = line.replaceAll("[#$+\\[\\]@%╠►=♥❤^💗░██▓:/(.\\!“”;)€°~;*?\"]", "");
                 line = line.replaceAll("[,'\\-_]", " ");
                 line = line.replaceAll("[^A-Za-z ]", "");
-                line = line.toLowerCase().replaceAll("co op", /"co-op");
+                line = line.toLowerCase().replaceAll("co op", "co-op");
                 // line = line.replaceAll(" ", " ").replaceAll(" ", " ");
                 String lineFiltered = "";
                 String[] array = line.split(" ");
